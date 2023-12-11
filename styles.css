@@ -1,0 +1,36 @@
+                                                        /* CSS BASE */
+/* Reset de Estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Establecer estilos básicos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+/* Evitar que las imágenes se extiendan fuera de su contenedor */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* Color predeterminado de enlaces */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+                                                        /* CSS ESPECÍFICO */
+                                                        
