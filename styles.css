@@ -1,5 +1,9 @@
                                                         /* CSS BASE */
 /* Reset de Estilos */
+:root{
+    --font-color: #333;
+    --border-bottomColor: #33333346;
+}
 * {
     margin: 0;
     padding: 0;
@@ -9,13 +13,17 @@
 /* Establecer estilos básicos para el cuerpo de la página */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+    line-height: 1.4;
+    color: var(--font-color);
     background-color: #fff;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
+}
+
+ol, ul {
+    list-style-type: none;
 }
 
 /* Evitar que las imágenes se extiendan fuera de su contenedor */
@@ -33,4 +41,45 @@ a:hover {
     text-decoration: underline;
 }
                                                         /* CSS ESPECÍFICO */
-                                                        
+
+header{
+    padding: 15px 0;
+    margin-bottom: 25px;
+}
+
+.wrapper{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.wrapper_v2{
+    margin: 20px;
+}
+
+.border-bottom{
+    border-bottom: 1px solid var(--border-bottomColor);
+}
+
+ul{
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+
+}
+
+article{
+    /* display: flex;
+    justify-content:first baseline;
+    gap: 20px; */
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+#total_amount{
+    background-color: rgba(236, 235, 235, 0.377);
+}
+
+#amount-container{
+    display: flex;
+    justify-content: space-between;
+}
