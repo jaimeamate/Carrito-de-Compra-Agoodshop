@@ -16,6 +16,9 @@ class Carrito {
     }
 
     obtenerCarrito() {
+        fetch('http://jsonblob.com/api/jsonBlob/1184215894598737920')
+        .then(response => response.json())
+        .then(products => {console.log(products)});
       // Devuelve información de los productos añadidos al carrito
       // Además del total calculado de todos los productos
       // Por ejemplo:
