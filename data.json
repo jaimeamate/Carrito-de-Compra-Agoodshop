@@ -1,0 +1,54 @@
+{
+  "currency": "€",
+  "total": 1508.92,
+  "products": [
+    {
+      "SKU": "0K3QOSOV4V",
+      "title": "iFhone 13 Pro",
+      "price": "938.99",
+      "quantity": 1
+    },
+    {
+      "SKU": "TGD5XORY1L",
+      "title": "Cargador",
+      "price": "49.99",
+      "quantity": 2
+    },
+    {
+      "SKU": "IOKW9BQ9F3",
+      "title": "Funda de piel",
+      "price": "79.99",
+      "quantity": 1
+    },
+    {
+      "SKU": "ABCD1234E",
+      "title": "Auriculares inalámbricos",
+      "price": "129.99",
+      "quantity": 2
+    },
+    {
+      "SKU": "XYZ789GHJ2",
+      "title": "Teclado mecánico para gaming",
+      "price": "149.99",
+      "quantity": 1
+    },
+    {
+      "SKU": "PQRS5678L",
+      "title": "Cámara digital de alta resolución",
+      "price": "299.99",
+      "quantity": 2
+    },
+    {
+      "SKU": "LMN456OPQ",
+      "title": "Smartwatch con monitor de salud",
+      "price": "89.99",
+      "quantity": 1
+    },
+    {
+      "SKU": "JKL321VBN5",
+      "title": "Mochila resistente al agua",
+      "price": "49.99",
+      "quantity": 2
+    }
+  ]
+}

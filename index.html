@@ -41,5 +41,29 @@
             </section>
         </article>
     </main>
+    <script src="carrito.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // products = []
+            currency = ''
+            total = 0
+            carrito = {} 
+            // fetch('https://jsonblob.com/api/jsonBlob/1192490599940218880')
+            fetch('data.json')
+            .then(promise => promise.json().then(function(result) {
+                // products = result.products
+                currency = result.currency
+                total = result.total
+                carrito = new Carrito(result.products)
+                // console.log('Productos: ',products)
+                console.log('Currency:', currency)
+                console.log('Total:', total)
+                console.log('Carrito :', carrito)
+            }));
+        });
+            // console.log('Productos: ',products);
+            // console.log('Currency:', currency);
+            // console.log('Total:', total);
+    </script>
 </body>
 </html>
