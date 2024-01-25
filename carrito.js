@@ -1,51 +1,84 @@
 class Carrito {
-    constructor(productos) {
-      this.productos = productos
-    }
+  constructor(info_basica_productos, moneda) {
+    this.productosCarrito = info_basica_productos;
+    this.moneda = moneda;
+    // this.formato = 10;
+    this.decimales = 2;
+  }
 
-    actualizarUnidades(sku, unidades) {
-      const productoEncontrado = this.productos.filter(producto => producto.sku === sku)
-      if (productoEncontrado.length > 0) {
-        productoEncontrado[0].quantity = unidades;  
-        console.log('Producto con sku ${sku} actualizado, unidades actuales: $(productoEncontrado[0].quantity)')        
-      } else {
-        console.log('Producto con sku $(sku) no se ha encontrado')
-      }
-      // Actualiza el número de unidades que se quieren comprar de un producto
+  actualizarUnidades(sku, unidades) {
+    //comprobamos si existe el sku dado por parametro y almacenamos true o false en una variable
+    const productoEncontrado = this.productosCarrito.find((p) => p.sku === sku);
+    // si existe modifica la cantidad del producto del carrito
+    if (productoEncontrado) {
+      // productoEncontrado[0].quantity = unidades;
+      this.productosCarrito = this.productosCarrito.map((p) => {
+        if (p.sku === sku) {
+          p.cantidad = unidades;
+          return p;
+        } else {
+          return p;
+        }
+      });
+      // console.log(
+      //   `Producto con sku "${sku}" actualizado, unidades actuales: ${unidades}`
+      // );
     }
-
-    obtenerInformacionProducto(sku) {
-      const productoEncontrado = this.productos.filter(producto => producto.sku === sku)
-      console.log(productoEncontrado.length > 0
-        ? "Producto encontrado: " + productoEncontrado[0]
-        : "Producto no encontrado"
-      );      
-      // Devuelve los datos de un producto además de las unidades seleccionadas
-      // Por ejemplo
-      // {
-      //   "sku": "0K3QOSOV4V",
-      //   "quantity": 3
-      // } 
+    //si no, no hace nada
+    else {
+      // console.log(`Producto con sku "${sku}" no se ha encontrado`);
     }
+    // Actualiza el número de unidades que se quieren comprar de un producto
+  }
 
-    obtenerCarrito() {
-      // fetch('https://jsonblob.com/api/jsonBlob/1192490599940218880')
-      fetch('data.json')
-      .then(promise => promise.json().then(function(result) {
-        console.log(result);
-      }));      
-      // Devuelve información de los productos añadidos al carrito
-      // Además del total calculado de todos los productos
-      // Por ejemplo:
-      // {
-      //   "total": "5820",
-      //   "currency: "€",
-      //   "products" : [
-      //     {
-      //       "sku": "0K3QOSOV4V"
-      //       ..
-      //     }
-      //    ]}
-      // }  
+  obtenerInformacionProducto(sku) {
+    // comprobamos si existe filtrando el array de productos del carrito
+    const productoEncontrado = this.productosCarrito.filter(
+      (p) => p.sku === sku
+    );
+    //si nos devuelve un array con productos es que existe por tanto devolvemos su informacion
+    if (productoEncontrado.length > 0) {
+      // console.log(`Producto con sku "${sku}" encontrado`);
+      return productoEncontrado[0];
+    }
+    // si no existe pues nada
+    else {
+      // console.log(`Producto con sku "${sku}" no se ha encontrado`);
     }
   }
+
+  calcular_total() {
+    const listaPreciosTotales = productos.map((p)=>{
+      return parseFloat(this.calcular_total_producto(p.sku))
+    })
+    const total = listaPreciosTotales.reduce((acc,pre)=>{
+      return acc + pre
+    })
+    return total
+  }
+
+  calcular_total_producto(sku) {
+    //comprobamos que el producto existe
+    const productoEncontrado = this.productosCarrito.filter((p) => p.sku === sku);
+    // console.log(productoEncontrado)
+    if (productoEncontrado.length > 0) {
+      // sacamos el precio del producto del array de Productos
+      const precioProductoEncontrado = productos.filter((p) => p.sku === sku)[0].precio;
+      // calculamos el precio total del producto
+      const totalProducto = precioProductoEncontrado * productoEncontrado[0].cantidad;
+      // console.log(totalProducto + ' $(moneda)')
+      return totalProducto.toFixed(this.decimales);
+    }
+  }
+
+  obtenerCarrito() {
+    //creamos el objeto con la informacion a mostrar
+    const data = {
+      total: this.calcular_total(),
+      currency: this.moneda,
+      products: this.productosCarrito,
+    };
+    // console.log(data)
+    return data;
+  }
+}

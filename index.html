@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="QuantitySelector.ce.js"></script>
     <title>Agoodshop Chart</title>
 </head>
 <body>
@@ -15,55 +16,35 @@
     <main>
         <article class="wrapper">
             <section id="products">
-                <div id="products-container" class="border-bottom">
-                    <ul>
+                <div id="products-container">
+                    <!-- <ul class="border-bottom">
                         <li>Producto</li>
                         <li>Cantidad</li>
                         <li>Unidad</li>
                         <li>Total</li>
-                    </ul>
+                    </ul> -->
                 </div>
-                <div>
-                    Aqui van los productos que vienen del JSON
-                </div>
+                    <!-- pruebas contenido -->
+                    <!-- <quantity-selector></quantity-selector> -->
             </section>
             <section id="total_amount">
                 <div class="wrapper_v2">
                     <h3>Total</h3>
-                    <div class="border-bottom" style="padding: 15px 0;">
+                    <div id="amount-products-totals" class="border-bottom" style="padding: 15px 0;">
                         Productos del JSON
                     </div>
                     <div id="amount-container" style="margin-top: 15px;">
                         <p>TOTAL</p>
-                        <h3>5555$</h3>
+                        <h3>0€</h3>
                     </div>
                 </div>
             </section>
         </article>
     </main>
-    <script src="carrito.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // products = []
-            currency = ''
-            total = 0
-            carrito = {} 
-            // fetch('https://jsonblob.com/api/jsonBlob/1192490599940218880')
-            fetch('data.json')
-            .then(promise => promise.json().then(function(result) {
-                // products = result.products
-                currency = result.currency
-                total = result.total
-                carrito = new Carrito(result.products)
-                // console.log('Productos: ',products)
-                console.log('Currency:', currency)
-                console.log('Total:', total)
-                console.log('Carrito :', carrito)
-            }));
-        });
-            // console.log('Productos: ',products);
-            // console.log('Currency:', currency);
-            // console.log('Total:', total);
-    </script>
+    <script src="Producto.js"></script>
+    <script src="Carrito.js"></script>
+    <script src="script.js "></script>
+    <!-- <script src="quantity-selector.html"></script> -->
+
 </body>
 </html>
