@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="QuantitySelector.ce.js"></script>
     <title>Agoodshop Chart</title>
 </head>
 <body>
-    
+    <header class="border-bottom">
+        <div class="wrapper">
+            <h4 id="header-content">agoodshop</h4>
+        </div>
+    </header>
+    <main>
+        <article class="wrapper">
+            <section id="products">
+                <div id="products-container">
+                    <!-- <ul class="border-bottom">
+                        <li>Producto</li>
+                        <li>Cantidad</li>
+                        <li>Unidad</li>
+                        <li>Total</li>
+                    </ul> -->
+                </div>
+                    <!-- pruebas contenido -->
+                    <!-- <quantity-selector></quantity-selector> -->
+            </section>
+            <section id="total_amount">
+                <div class="wrapper_v2">
+                    <h3>Total</h3>
+                    <div id="amount-products-totals" class="border-bottom" style="padding: 15px 0;">
+                        Productos del JSON
+                    </div>
+                    <div id="amount-container" style="margin-top: 15px;">
+                        <p>TOTAL</p>
+                        <h3>0€</h3>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+    <script src="Producto.js"></script>
+    <script src="Carrito.js"></script>
+    <script src="script.js "></script>
+    <!-- <script src="quantity-selector.html"></script> -->
+
 </body>
 </html>
