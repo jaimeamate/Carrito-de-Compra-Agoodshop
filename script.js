@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded',() => {
             `
             document.getElementById('amount-products-totals').innerHTML = ''
             //recorremos los productos y creamos elementos en el DOM en base a ellos
-            productos.forEach(p => {
+            productos.forEach((p,i) => {
                 //contenedores
                 contenedorProductos = document.getElementById('products-container')
                 contenedorProductosTotal = document.getElementById('amount-products-totals')
@@ -77,11 +77,25 @@ document.addEventListener('DOMContentLoaded',() => {
                 //append to contenerdor
                 contenedorProductos.appendChild(lista)
                 //listeners
-                itemCantidadQSelector.addEventListener('click',(ev)=>{
-                    // carrito.actualizarUnidades(p.sku,ev.target._contador)
-                    //pintarDOM()
-                })
                 itemCantidadQSelector.inputValor.addEventListener('input', (ev) => {
+                    //borrar/añadir producto DOM (total)
+                    nodoProducto = document.body.querySelector(`ul[product_order='${i}']`)
+                    // nodoProductoBefore = document.body.querySelector(`ul[product_order='${i+1}']`)
+                    // console.log(nodoProducto)
+                    if(ev.target.value == 0 && nodoProducto !== null){
+                        // console.log('HOLA')
+                        nodoProducto.parentNode.removeChild(nodoProducto)
+                        // contenedorProductosTotal.removeChild(document.getElementById(i))
+                    }else if(ev.target.value !== 0 && nodoProducto == null){
+                        index = i
+                        itemRecuperado = pintarTotal()
+                        itemReferencia = null
+                        // console.log(itemReferencia)
+                        while(itemReferencia == null && index<=productos.length){
+                            itemReferencia = document.body.querySelector(`ul[product_order='${index++}']`)
+                        }
+                        contenedorProductosTotal.insertBefore(itemRecuperado,itemReferencia)
+                    }
                     // console.log('has cambiado el contenido del input')
                     // console.log(p.sku)
                     carrito.actualizarUnidades(p.sku,ev.target.value)
@@ -93,9 +107,10 @@ document.addEventListener('DOMContentLoaded',() => {
                 })
                 }
                 //total front
-                {
+                function pintarTotal(){
                 //listaTotal
                 listaTotal = document.createElement('ul')
+                listaTotal.setAttribute('product_order',i)
                 //Elemento item
                 itemProductoTotal = document.createElement('li')
                 itemProductoTotal.classList.add('border-bottom_dashed')
@@ -110,9 +125,11 @@ document.addEventListener('DOMContentLoaded',() => {
                 itemProductoTotal.appendChild(itemProductoNombreTotal)                
                 itemProductoTotal.appendChild(itemProductoPrecioTotal)                
                 listaTotal.appendChild(itemProductoTotal)
-                //append contenedor
-                contenedorProductosTotal.appendChild(listaTotal)
+                return listaTotal
                 }
+                pintarTotal()
+                //append contenedor
+                contenedorProductosTotal.appendChild(listaTotal)            
             })
             //total amount
             contenedorPrecioTotal.textContent = carrito.calcular_total().toFixed(2)+`${carrito.moneda}`

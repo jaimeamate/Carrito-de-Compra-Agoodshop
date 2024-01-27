@@ -25,30 +25,6 @@
       "title": "Auriculares inalámbricos",
       "price": "129.99",
       "quantity": 1
-    },
-    {
-      "sku": "XYZ789GHJ2",
-      "title": "Teclado mecánico gaming",
-      "price": "149.99",
-      "quantity": 1
-    },
-    {
-      "sku": "PQRS5678L",
-      "title": "Cámara digital 4K",
-      "price": "299.99",
-      "quantity": 1
-    },
-    {
-      "sku": "LMN456OPQ",
-      "title": "Smartwatch fit",
-      "price": "89.99",
-      "quantity": 1
-    },
-    {
-      "sku": "JKL321VBN5",
-      "title": "Mochila waterproof",
-      "price": "49.99",
-      "quantity": 1
     }
   ]
 }
