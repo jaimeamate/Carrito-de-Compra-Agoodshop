@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded',() => {
             productos.push(new Producto(p.sku, p.title, p.price))
             // console.log(`producto ${p.title} con precio ${p.price}€ creado`)
         });
-        console.log(`FIN PRODUCTOS`)
+        // console.log(`FIN PRODUCTOS`)
 
         //GENERAMOS CARRITO ENCAPSULANDO ESTE OBJETO DE TODO LO AJENO A EL
         datos_productos_carrito = data.products.map((p)=>{return {sku: p.sku,cantidad: p.quantity}})
         // console.log(datos_productos_carrito)
         carrito = new Carrito(datos_productos_carrito, data.currency)
-        console.log(`FIN CARRITO`)
-        console.log('CARRITO Y PRODUCTO FUNCIONA')
+        // console.log(`FIN CARRITO`)
+        // console.log('CARRITO Y PRODUCTO FUNCIONA')
         // MODIFICACION DOM
         function pintarDOM() {
             //borramos el contenido antes de pintar
@@ -101,10 +101,19 @@ document.addEventListener('DOMContentLoaded',() => {
                     carrito.actualizarUnidades(p.sku,ev.target.value)
                     // document.getElementById(p.sku).textContent = carrito.calcular_total_producto(p.sku)+`${carrito.moneda}`
                     Array.from(document.getElementsByClassName(p.sku)).forEach(el => {
-                        el.textContent = carrito.calcular_total_producto(p.sku)+`${carrito.moneda}`
+                        el.textContent = carrito.calcular_total_producto(p.sku, p.precio)+`${carrito.moneda}`
                     })
-                    contenedorPrecioTotal.textContent = carrito.calcular_total().toFixed(2)+`${carrito.moneda}`
+                    listaPreciosTotales = []
+                    listaPreciosTotales = getListaPrecios()
+                    contenedorPrecioTotal.textContent = carrito.calcular_total(listaPreciosTotales).toFixed(2)+`${carrito.moneda}`
                 })
+                listaPreciosTotales = []
+                function getListaPrecios(){
+                    listaPreciosTotales = productos.map((p)=>{
+                        return parseFloat(carrito.calcular_total_producto(p.sku, p.precio))
+                    })
+                    return listaPreciosTotales
+                }
                 }
                 //total front
                 function pintarTotal(){
@@ -127,12 +136,13 @@ document.addEventListener('DOMContentLoaded',() => {
                 listaTotal.appendChild(itemProductoTotal)
                 return listaTotal
                 }
+                listaPreciosTotales = getListaPrecios()
                 pintarTotal()
                 //append contenedor
                 contenedorProductosTotal.appendChild(listaTotal)            
             })
             //total amount
-            contenedorPrecioTotal.textContent = carrito.calcular_total().toFixed(2)+`${carrito.moneda}`
+            contenedorPrecioTotal.textContent = carrito.calcular_total(listaPreciosTotales).toFixed(2)+`${carrito.moneda}`
             // console.log(contenedorPrecioTotal.textContent)
         }
         //renderizamos front

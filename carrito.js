@@ -47,25 +47,26 @@ class Carrito {
     }
   }
 
-  calcular_total() {
-    const listaPreciosTotales = productos.map((p)=>{
-      return parseFloat(this.calcular_total_producto(p.sku))
-    })
+  calcular_total(listaPreciosTotales) {
+    // const listaPreciosTotales = productos.map((p)=>{
+    //   return parseFloat(this.calcular_total_producto(p.sku))
+    // })
+    // console.log(listaPreciosTotales)
     const total = listaPreciosTotales.reduce((acc,pre)=>{
       return acc + pre
     })
     return total
   }
 
-  calcular_total_producto(sku) {
+  calcular_total_producto(sku, price) {
     //comprobamos que el producto existe
     const productoEncontrado = this.productosCarrito.filter((p) => p.sku === sku);
     // console.log(productoEncontrado)
     if (productoEncontrado.length > 0) {
       // sacamos el precio del producto del array de Productos
-      const precioProductoEncontrado = productos.filter((p) => p.sku === sku)[0].precio;
+      //const precioProductoEncontrado = productos.filter((p) => p.sku === sku)[0].precio;
       // calculamos el precio total del producto
-      const totalProducto = precioProductoEncontrado * productoEncontrado[0].cantidad;
+      const totalProducto = price * productoEncontrado[0].cantidad;
       // console.log(totalProducto + ' $(moneda)')
       return totalProducto.toFixed(this.decimales);
     }
