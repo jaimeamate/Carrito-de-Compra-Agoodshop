@@ -74,19 +74,10 @@ header{
         align-items: left;
         justify-content: center;
         padding: 15px 0;
-        /* border-bottom: 1px solid var(--border-bottomColor); */
     }
-    /* &>li{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    } */
 }
 
 article{
-    /* display: flex;
-    justify-content:first baseline;
-    gap: 20px; */
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 20px;
